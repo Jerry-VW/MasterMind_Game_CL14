@@ -198,7 +198,7 @@ int main(int argc, const char * argv[]) {
     //trace eList by lldb
     element *eList_debug;
     eList_debug = eList;
-    printf("%d", sizeof(element));
+    //printf("%d", sizeof(element));
 #endif
     
     printf("************************:\nReady.\tStandby.\t[Press Enter to start]\n>");
