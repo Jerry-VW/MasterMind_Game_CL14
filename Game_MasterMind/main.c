@@ -9,40 +9,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "main.h"
+
 #define Debug
-
-//stdbool.h (C99;VS2015) OR:
-//enumerators
-typedef enum {
-    false, true
-}bool;
-
-typedef enum {
-    NUMBER0_3, NUMBER0_9, ALPHABET
-} mode;
-
-//struct element
-//"element" after "struct" cannot be omitted!
-typedef struct element{
-    char cValue;
-    char cAns;
-    bool bIsHit;
-    bool bIsBlow;
-    struct element *eNext_pt;
-} element;
+#define VERSION_MAIN 1.1
 
 //struct pointer
 element *eList;
-
-bool setRules(int *, int *, mode *);
-bool setList(int);
-bool setAnswer(int);
-bool listCheck(int, short *, short *);
-bool showAnswer(int);
-
-//foolproof; compatibility
-bool isNumeric(char);
-bool isAlphabet(char);
 
 bool setRules(int *iKoma_pt, int *iChance_pt, mode *pMode){
     int iChoose;
@@ -154,6 +127,9 @@ bool listCheck(int iKoma, short *sHit, short *sBlow){
     for (int i = 0; i < iKoma; i++) {
         //reference
         if (eWork_pt -> bIsHit) {
+            //It's a Hit, no need to process.
+            //work point goes to next one.
+            eWork_pt = eWork_pt -> eNext_pt;
             continue;
         }
         eCheck_pt = eList;
@@ -163,7 +139,7 @@ bool listCheck(int iKoma, short *sHit, short *sBlow){
                 && (eWork_pt -> cAns == eCheck_pt -> cValue)) {
                 eCheck_pt -> bIsBlow = true;
                 *sBlow += 1;
-                //break;
+                break;
             }
             eCheck_pt = eCheck_pt -> eNext_pt;
         }
