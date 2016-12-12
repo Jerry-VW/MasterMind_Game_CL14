@@ -128,7 +128,7 @@ bool listCheck(int iKoma, short *sHit, short *sBlow){
         //reference
         if (eWork_pt -> bIsHit) {
             //It's a Hit, no need to process.
-            //work point goes to next one.
+            //work point skips to next one.
             eWork_pt = eWork_pt -> eNext_pt;
             continue;
         }
@@ -180,7 +180,10 @@ int main(int argc, const char * argv[]) {
     printf("************************:\nReady.\tStandby.\t[Press Enter to start]\n>");
     getchar();
     getchar();
+    //macOS
     system("clear");
+    //Windows
+    //system("clr");
     
     //play
     //show rules
